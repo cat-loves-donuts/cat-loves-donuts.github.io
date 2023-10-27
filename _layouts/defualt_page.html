@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<style>
+  #logo-container {
+    position: fixed;
+    bottom: 30px;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  #toggleButton {
+    cursor: pointer;
+  } 
+
+  .hidden {
+    display: none;
+  }
+</style>
+<html lang="en">
+  {% include header.html %}
+  <body>
+    {% include navbar.html %}
+    <div class="container">{{ content }}</div>
+    {% include footer.html %}
+
+    <div id="logo-container">
+      <img id="logo" src="/assets/logo_stay.gif" alt="Logo" width="150" height="150"/>
+    </div>
+
+    <script src="/js/jquery-3.7.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <script>
+      const gifContainer = document.getElementById('logo-container');
+      const gifImage = document.getElementById('logo');
+      let interactionEnabled = true;
+    
+      // 当鼠标移动到图片上时，切换到logo_point.gif
+      gifImage.addEventListener('mouseover', () => {
+        if (interactionEnabled) {
+          gifImage.src = '/assets/logo_point.gif';
+        }
+      });
+    
+      // 当鼠标离开图片时，切换回logo_stay.gif
+      gifImage.addEventListener('mouseout', () => {
+        if (interactionEnabled) {
+          gifImage.src = '/assets/logo_stay.gif';
+        }
+      });
+    
+      // 当点击图片时，切换到logo_feed.gif
+      gifImage.addEventListener('click', () => {
+        gifImage.src = '/assets/logo_feed.gif';
+    
+        // 禁用鼠标互动
+        gifImage.style.pointerEvents = 'none';
+        gifContainer.style.cursor = 'default';
+        interactionEnabled = false;
+    
+        // 在3.3秒后切换为logo_thx.gif
+        setTimeout(() => {
+          gifImage.src = '/assets/logo_thx.gif';
+        }, 3300);
+      });
+
+      const toggleButton = document.getElementById("toggleButton");
+      const hiddenText = document.getElementById("hiddenText");
+
+      toggleButton.addEventListener("click", () => {
+          if (hiddenText.classList.contains("hidden")) {
+              hiddenText.classList.remove("hidden");
+              toggleButton.textContent = "Hide";
+          } else {
+              hiddenText.classList.add("hidden");
+              toggleButton.textContent = "The cat in the corner?";
+    }
+});
+
+
+
+
+    </script>
+  </body>
+</html>
