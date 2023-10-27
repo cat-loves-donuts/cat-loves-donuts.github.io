@@ -42,6 +42,8 @@ jobs:
           gem install bundler
       - name: Add platform to bundle lockfile
         run: bundle lock --add-platform x86_64-linux
+      - name: Install Jekyll Dependencies
+        run: bundle install
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
