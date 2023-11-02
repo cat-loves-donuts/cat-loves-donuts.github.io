@@ -14,6 +14,32 @@
   .hidden {
     display: none;
   }
+
+  .course_card{
+    border-radius: 0.5rem;
+  }
+
+  .course_card_img{
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      height: 120px;
+  }
+
+  .course_title{
+    font-size: 20px;
+      font-weight: 600;
+  }
+
+  .course_details{
+      font-size: 16px;
+      color: #585858;
+  }
+
+  .course_card_footer{
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #ecebf1;
+  }
+
 </style>
 <html lang="en">
   {% include header.html %}
@@ -30,34 +56,27 @@
     <script src="/js/bootstrap.min.js"></script>
     
     <script>
+
+      // logo cat function
       const gifContainer = document.getElementById('logo-container');
       const gifImage = document.getElementById('logo');
       let interactionEnabled = true;
     
-      // 当鼠标移动到图片上时，切换到logo_point.gif
       gifImage.addEventListener('mouseover', () => {
         if (interactionEnabled) {
           gifImage.src = '/assets/logo_point.gif';
         }
       });
-    
-      // 当鼠标离开图片时，切换回logo_stay.gif
       gifImage.addEventListener('mouseout', () => {
         if (interactionEnabled) {
           gifImage.src = '/assets/logo_stay.gif';
         }
       });
-    
-      // 当点击图片时，切换到logo_feed.gif
       gifImage.addEventListener('click', () => {
         gifImage.src = '/assets/logo_feed.gif';
-    
-        // 禁用鼠标互动
         gifImage.style.pointerEvents = 'none';
         gifContainer.style.cursor = 'default';
         interactionEnabled = false;
-    
-        // 在3.3秒后切换为logo_thx.gif
         setTimeout(() => {
           gifImage.src = '/assets/logo_thx.gif';
         }, 3300);
@@ -73,9 +92,25 @@
           } else {
               hiddenText.classList.add("hidden");
               toggleButton.textContent = "The cat in the corner?";
-    }
-});
+          }
+      });
 
+
+      // Time counter
+      const targetDate = new Date("2026-12-31T00:00:00Z");
+      function updateCountdown() {
+        const currentDate = new Date();
+        const timeRemaining = targetDate - currentDate;
+        const years = Math.floor(timeRemaining / (365 * 24 * 60 * 60 * 1000));
+        const months = Math.floor((timeRemaining % (365 * 24 * 60 * 60 * 1000)) / (30 * 24 * 60 * 60 * 1000));
+        const days = Math.floor((timeRemaining % (30 * 24 * 60 * 60 * 1000)) / (24 * 60 * 60 * 1000));
+        const totalDays = Math.floor(timeRemaining / (24 * 60 * 60 * 1000));
+
+        const countdownElement = document.getElementById("countdown");
+        countdownElement.innerHTML = `My Ph.D ends:<br> ${years} years, ${months} months, ${days} days (Total ${totalDays} days)`;
+        setTimeout(updateCountdown, 1000);
+      }
+      updateCountdown();
 
 
 
