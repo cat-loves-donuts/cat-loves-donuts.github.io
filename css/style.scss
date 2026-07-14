@@ -6,3 +6,178 @@
 @import "bootstrap/bootstrap";
 
 /* add additional CSS rules below */
+
+#logo-container {
+	position: fixed;
+	bottom: 30px;
+	right: 10px;
+	cursor: pointer;
+}
+
+#toggleButton {
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
+}
+
+.course_card {
+	border-radius: 0.5rem;
+}
+
+.course_card_img {
+	border-top-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+	height: 120px;
+}
+
+.course_title {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.course_details {
+	font-size: 16px;
+	color: #585858;
+}
+
+.course_card_footer {
+	padding: 1rem 1.5rem;
+	border-top: 1px solid #ecebf1;
+}
+
+#game-stack {
+	position: fixed;
+	bottom: 30px;
+	right: 10px;
+	width: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 12px;
+}
+
+.game-windows {
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: flex-end;
+	gap: 12px;
+}
+
+#game-stack.hidden,
+.game-window.hidden {
+	display: none;
+}
+
+.game-progress {
+	width: 150px;
+	color: #222;
+	text-align: right;
+}
+
+.game-progress-line {
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 1.35;
+}
+
+.game-window {
+	width: 150px;
+	color: #222;
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	text-align: right;
+}
+
+.game-window-title {
+	margin-bottom: 6px;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.game-window-copy {
+	margin-bottom: 6px;
+	font-size: 13px;
+	line-height: 1.35;
+}
+
+.game-window-meta {
+	margin-bottom: 6px;
+	font-size: 12px;
+	color: #555;
+	line-height: 1.35;
+}
+
+.coin-visual-button {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin-bottom: 6px;
+	background: transparent;
+	border: 0;
+	outline: none;
+	box-shadow: none;
+	cursor: pointer;
+}
+
+.coin-visual-button:focus,
+.coin-visual-button:focus-visible,
+.coin-visual-button:active {
+	outline: none;
+	box-shadow: none;
+}
+
+.coin-visual-button:disabled {
+	cursor: default;
+	opacity: 1;
+}
+
+.coin-visual-image {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.game-upgrades {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 6px;
+	width: 100%;
+}
+
+.game-upgrades.hidden {
+	display: none;
+}
+
+.game-upgrade-button {
+	width: 100%;
+	padding: 4px 6px;
+	background: transparent;
+	border: 1px solid #222;
+	font-size: 12px;
+	line-height: 1.25;
+	white-space: normal;
+	word-break: break-word;
+	text-align: center;
+}
+
+.game-upgrade-button:disabled {
+	color: #777;
+	border-color: #999;
+	cursor: default;
+	opacity: 0.7;
+}
+
+.game-upgrade-button.hidden {
+	display: none;
+}
+
+.game-window button {
+	margin-bottom: 6px;
+}

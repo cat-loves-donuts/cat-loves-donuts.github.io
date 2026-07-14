@@ -1,46 +1,4 @@
 <!DOCTYPE html>
-<style>
-  #logo-container {
-    position: fixed;
-    bottom: 30px;
-    right: 10px;
-    cursor: pointer;
-  }
-
-  #toggleButton {
-    cursor: pointer;
-  } 
-
-  .hidden {
-    display: none;
-  }
-
-  .course_card{
-    border-radius: 0.5rem;
-  }
-
-  .course_card_img{
-      border-top-left-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
-      height: 120px;
-  }
-
-  .course_title{
-    font-size: 20px;
-      font-weight: 600;
-  }
-
-  .course_details{
-      font-size: 16px;
-      color: #585858;
-  }
-
-  .course_card_footer{
-      padding: 1rem 1.5rem;
-      border-top: 1px solid #ecebf1;
-  }
-
-</style>
 <html lang="en">
   {% include header.html %}
   <body>
@@ -52,36 +10,27 @@
       <img id="logo" src="/assets/logo_stay.gif" alt="Logo" width="150" height="150"/>
     </div>
 
+    <div id="game-stack" class="hidden" aria-live="polite">
+      <div id="game-progress" class="game-progress">
+        <div class="game-progress-line">
+          <span>Balance</span>
+          <span id="total-balance-display">0</span>
+        </div>
+        <div class="game-progress-line">
+          <span>Target</span>
+          <span id="current-target-display">50</span>
+        </div>
+      </div>
+
+      <div id="game-windows" class="game-windows"></div>
+    </div>
+
     <script src="/js/jquery-3.7.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/game-config.js"></script>
+    <script src="/js/mini-games.js"></script>
     
     <script>
-
-      // logo cat function
-      const gifContainer = document.getElementById('logo-container');
-      const gifImage = document.getElementById('logo');
-      let interactionEnabled = true;
-    
-      gifImage.addEventListener('mouseover', () => {
-        if (interactionEnabled) {
-          gifImage.src = '/assets/logo_point.gif';
-        }
-      });
-      gifImage.addEventListener('mouseout', () => {
-        if (interactionEnabled) {
-          gifImage.src = '/assets/logo_stay.gif';
-        }
-      });
-      gifImage.addEventListener('click', () => {
-        gifImage.src = '/assets/logo_feed.gif';
-        gifImage.style.pointerEvents = 'none';
-        gifContainer.style.cursor = 'default';
-        interactionEnabled = false;
-        setTimeout(() => {
-          gifImage.src = '/assets/logo_thx.gif';
-        }, 3300);
-      });
-
       const toggleButton = document.getElementById("toggleButton");
       const hiddenText = document.getElementById("hiddenText");
 
