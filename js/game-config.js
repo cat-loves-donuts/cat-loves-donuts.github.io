@@ -20,7 +20,7 @@ window.MINI_GAME_CONFIG = {
   },
   numberFormat: {
     scientificThreshold: 10000,
-    maxFractionDigits: 1
+    maxFractionDigits: 4
   },
   ui: {
     inlineUpgradeCostMaxChars: 4
@@ -90,12 +90,190 @@ window.MINI_GAME_CONFIG = {
     },
     {
       key: 'game2',
-      type: 'placeholder',
-      title: 'Game 02',
+      type: 'marketTrading',
+      title: 'Buy Crypto',
       unlockAt: 50,
+      market: {
+        tickMs: 8000,
+        startingPrice: 1000,
+        historyLength: 24,
+        minPrice: 50,
+        driftStrength: 0.008,
+        volatility: 0.014,
+        regimeShiftChance: 0.18,
+        regimeShiftRange: 0.008,
+        volatilityStateShiftChance: 0.14,
+        momentumCarry: 0.42,
+        meanReversionStrength: 0.06,
+        maxDriftBias: 0.012,
+        maxMomentum: 0.012,
+        maxStepChange: 0.065,
+        shockChance: 0.1,
+        shockRange: 0.08,
+        shockCooldownTicks: 2,
+        wickBase: 0.0025,
+        wickVolatilityFactor: 0.72,
+        wickShockMultiplier: 1.9,
+        wickTrendFollowChance: 0.24,
+        regimes: {
+          calm: {
+            weight: 0.24,
+            minTicks: 2,
+            maxTicks: 5,
+            volMultiplier: 0.4,
+            wickMultiplier: 0.45,
+            trendMultiplier: 0.75,
+            meanReversionMultiplier: 1.35,
+            shockMultiplier: 0.5
+          },
+          trend: {
+            weight: 0.46,
+            minTicks: 3,
+            maxTicks: 7,
+            volMultiplier: 0.82,
+            wickMultiplier: 0.72,
+            trendMultiplier: 1.2,
+            meanReversionMultiplier: 0.82,
+            shockMultiplier: 1
+          },
+          violent: {
+            weight: 0.22,
+            minTicks: 2,
+            maxTicks: 4,
+            volMultiplier: 1.28,
+            wickMultiplier: 1.08,
+            trendMultiplier: 1.1,
+            meanReversionMultiplier: 0.62,
+            shockMultiplier: 1.35
+          },
+          manic: {
+            weight: 0.08,
+            minTicks: 2,
+            maxTicks: 3,
+            volMultiplier: 1.75,
+            wickMultiplier: 1.55,
+            trendMultiplier: 0.95,
+            meanReversionMultiplier: 0.42,
+            shockMultiplier: 1.75
+          }
+        },
+        eventChance: 0.28,
+        eventProfiles: [
+          {
+            key: 'squeeze_up',
+            weight: 0.22,
+            minTicks: 2,
+            maxTicks: 4,
+            direction: 1,
+            driftMin: 0.016,
+            driftMax: 0.042,
+            volMultiplier: 1.75,
+            wickMultiplier: 1.85,
+            wickSkew: 0.75,
+            shockMultiplier: 1.25
+          },
+          {
+            key: 'flush_down',
+            weight: 0.24,
+            minTicks: 2,
+            maxTicks: 4,
+            direction: -1,
+            driftMin: 0.018,
+            driftMax: 0.048,
+            volMultiplier: 1.95,
+            wickMultiplier: 2,
+            wickSkew: 0.85,
+            shockMultiplier: 1.35
+          },
+          {
+            key: 'whipsaw',
+            weight: 0.045,
+            minTicks: 2,
+            maxTicks: 3,
+            direction: 0,
+            driftMin: 0.008,
+            driftMax: 0.028,
+            volMultiplier: 2.2,
+            wickMultiplier: 2.9,
+            wickSkew: 1.35,
+            shockMultiplier: 1.45,
+            whipsaw: true,
+            huntBothSides: true
+          },
+          {
+            key: 'liquidation_hunt',
+            weight: 0.035,
+            minTicks: 1,
+            maxTicks: 3,
+            direction: 0,
+            driftMin: 0.005,
+            driftMax: 0.018,
+            volMultiplier: 1.45,
+            wickMultiplier: 3.4,
+            wickSkew: 1.8,
+            shockMultiplier: 1.15,
+            huntBothSides: true
+          }
+        ],
+        animationMs: 300,
+        chart: {
+          width: 150,
+          height: 76,
+          padding: {
+            top: 8,
+            right: 6,
+            bottom: 10,
+            left: 6
+          },
+          lineColor: '#d48416',
+          dotColor: '#b85c00',
+          wickColor: 'rgba(184, 92, 0, 0.28)',
+          gridColor: 'rgba(34, 34, 34, 0.12)'
+        }
+      },
+      trade: {
+        leverages: [5, 10, 25],
+        feeRate: 0.006,
+        maintenanceMarginRate: 0.015,
+        hiddenHunt: {
+          minLeverage: 25,
+          startAfterTicks: 2,
+          baseChance: 0.08,
+          growthFactor: 1.85,
+          leverageExponent: 1.15,
+          guaranteedAfterTicks: 8,
+          overshootMin: 0.006,
+          overshootMax: 0.028
+        },
+        minAllocation: 10,
+        maxAllocation: 100,
+        defaultAllocation: 25,
+        allocationStep: 5
+      },
+      upgrades: {
+        positionInfo: {
+          key: 'positionInfo',
+          title: 'Info I',
+          cost: 25,
+          activeLabel: 'Info I on'
+        },
+        marketSignal: {
+          key: 'marketSignal',
+          title: 'Signal I',
+          cost: 40,
+          activeLabel: 'Signal I on'
+        }
+      },
       messages: {
         locked: 'Reach {target} coins to unlock this window.',
-        unlocked: 'Second game slot unlocked. A new rule set can go here.'
+        idle: 'Watch the line and choose a side.',
+        positionOpen: 'Position open. Wait or close manually.',
+        closed: 'Position closed.',
+        liquidated: 'Liquidated. Margin lost.',
+        wickLiquidated: 'Liquidated by a wick spike.',
+        unlocked: 'Second game unlocked.',
+        infoUnlocked: 'Position info unlocked.',
+        signalUnlocked: 'Fuzzy signal unlocked.'
       }
     },
     {
